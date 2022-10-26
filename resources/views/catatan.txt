@@ -1,0 +1,11 @@
+1.untuk file tampilan umum ditaruh sini
+2.buat folder baru ,dan ditaruh di dalam situ
+3.untuk css taruh di folder public/umum
+4.pastikan css & js sudah terhubung dengan file nya
+5.sekalian dipisah pisah yak footer, header,sama komponennya biar bisa dinamis gk ngetik kode berulang.
+
+
+6. untuk file proses tampilanumum,nama database nya tshop,bisa di migrate untuk memudahkan membuat table nya
+7. kasih keterangan perfunction, route dan controller yang di buat biar mudah nek njelasin
+8. kalau sudah jangan lupa upload di github lagi
+git
