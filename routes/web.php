@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\http\Controllers\karyaController;
 use App\http\Controllers\penjualController;
 use App\http\Controllers\transaksiController;
+use App\http\Controllers\loginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,11 +26,11 @@ Route::get('karya-list',[karyaController::class,'index']);
 //Route untuk menampilkan halaman tambah karya baru
 Route::get('karya-tambah',[karyaController::class,'create']);
 //Route untuk menampilkan halaman edit karya
-Route::get('karya-edit',[karyaController::class,'edit']);
+Route::get('karya-edit/{id}',[karyaController::class,'edit']);
 //Route untuk menyimpan karya baru
 Route::post('karya/tambah-simpan',[karyaController::class,'store']);
 //Route untuk menyimpan perubahan dari karya
-Route::post('karya/edit-simpan',[karyaController::class,'update']);
+Route::post('karya/edit-simpan/{id}',[karyaController::class,'update']);
 //Route untuk Menghapus Data Karya
 Route::get('karya/hapus/{id}',[karyaController::class,'destroy']);
 //Route untuk Verifikasi Data Karya
@@ -66,3 +67,13 @@ Route::get('akun/ubah-password', [penjualController::class, 'changePassword']);
 //Route untuk mengubah password
 Route::post('akun/ubah-password/simpan', [penjualController::class, 'saveChangePassword']);
 
+//Route Menampilkan Halaman Login
+Route::get('login', [loginController::class, 'index']);
+//Route Memproses Login
+Route::post('signin', [loginController::class, 'attempt']);
+//Route untuk Logout dari Akun
+Route::get('logout', [loginController::class, 'logout']);
+
+
+//Route Menampilkan Halaman Register
+Route::get('register', [loginController::class, 'register']);

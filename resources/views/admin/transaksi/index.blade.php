@@ -67,7 +67,7 @@
                         </td>
 
                         <td>
-                          <a href="/transaksi/hapus/{{$data->id}}"><button class="btn btn-md btn-danger">Hapus</button></a><br>
+                          <a href="/transaksi/hapus/{{$data->id}}"><button class="btn btn-md btn-danger" title="Hapus Data"><i class="fa fa-trash"></i></button></a><br>
                       </td>
                      </tr>
                    @endforeach

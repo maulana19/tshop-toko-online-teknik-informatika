@@ -104,7 +104,7 @@
                   </div>
                 </form> --}}
                 <a href="/karya-tambah">
-                  <button type="button" class="ml-1 btn btn-sm btn-success">Tambah Karya Baru</button>
+                  <button type="button" class="ml-1 btn btn-sm btn-success"><i class="fa fa-plus"></i> Tambah Karya Baru</button>
                 </a>
                 </form>
                 </div>
@@ -136,16 +136,16 @@
 
                      <td style="max-width:50vh">
                         @if ($karya->demo != null)
-                            <a href="{{$karya->demo ? $karya->demo : '#'}}" {{ $karya->demo ? 'target="_blank"': '' }}><button style="width: 50%" class="btn btn-md btn-success">Preview Demo</button></a>
+                            <a href="{{$karya->demo ? $karya->demo : '#'}}" {{ $karya->demo ? 'target="_blank"': '' }}><button style="width: 50%" class="btn btn-md btn-success" title="Preview Demo"><i class="fa fa-globe"></i> Preview</button></a>
                         @endif
-                        <a href="/karya/detail/{{ $karya->id }}"><button style="width: {{$karya->demo? '50%':'100%'}}" class="btn btn-md btn-info">Detail</button></a>
+                        <a href="/karya/detail/{{ $karya->id }}"><button style="width: {{$karya->demo? '50%':'100%'}}" class="btn btn-md btn-info" title="Detail"><i class="fa fa-eye"></i> Detail</button></a>
 
                         <br>
-                        <a href="/karya/ubah/"><button style="width: 50%; margin-top:8px" class="btn btn-md btn-warning">Edit</button></a>
-                        <a href="/karya/hapus/{{$karya->id}}"><button style="width: 50%; margin-top:8px" class="btn btn-md btn-danger">Hapus</button></a><br>
+                        <a href="/karya-edit/{{ $karya->id }}"><button style="width: 50%; margin-top:8px" class="btn btn-md btn-warning" title="Edit"><i class="fa fa-cogs"></i> Edit</button></a>
+                        <a href="/karya/hapus/{{$karya->id}}"><button style="width: 50%; margin-top:8px" class="btn btn-md btn-danger" title="Hapus"><i class="fa fa-trash"></i> Hapus</button></a><br>
 
                         @if ($karya->status == 2)
-                        <form action="/karya/verifikasi" method="POST">@csrf <input type="hidden" name="id" value="{{$karya->id}}"><button type="submit" style="width: 100%; margin-top:15px" class="btn btn-lg btn-primary">Verifikasi</button></form>
+                        <form action="/karya/verifikasi" method="POST">@csrf <input type="hidden" name="id" value="{{$karya->id}}"><button type="submit" style="width: 100%; margin-top:15px" class="btn btn-lg btn-primary"><i class="fa fa-check-square"></i> Verifikasi</button></form>
                         @endif
                     </td>
                    </tr>

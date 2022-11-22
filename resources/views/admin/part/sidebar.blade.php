@@ -2,7 +2,7 @@
 <div class="wrapper">
     <!-- Preloader -->
     <div class="preloader flex-column justify-content-center align-items-center">
-        <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+        <img class="animation__shake" src="{{ asset('admin/image/logo/tiflogo.PNG')}}" alt="OK bRO" height="300" width="300">
     </div>
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -17,8 +17,7 @@
             <!-- Navbar Search -->
             <li class="nav-item">
             <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                {{-- <i class="fas fa-search"></i> --}}
-                <button class="btn btn-secondary btn-sm p-0">Cari</button>
+                <i class="fas fa-search"></i>
             </a>
             <div class="navbar-search-block">
                 <form class="form-inline">
@@ -72,7 +71,7 @@
                  with font-awesome or any other icon font library -->
             <li class="nav-item">
               <a href="/transaksi" class="nav-link">
-                <i class="nav-icon fas fa-th"></i>
+                <i class="nav-icon fas fa-th-list"></i>
                 <p>
                   Transaksi
                   {{-- <span class="right badge badge-danger">New</span> --}}
@@ -81,7 +80,7 @@
             </li>
             <li class="nav-item">
               <a href="/karya-list" class="nav-link {{ Request::is('karya-list') || Request::is('karya-tambah') || Request::is('karya-edit') ? 'active' : ''}}">
-                <i class="nav-icon fas fa-th"></i>
+                <i class="nav-icon fa fa-folder"></i>
                 <p>
                   Karya
                   {{-- <span class="right badge badge-danger">New</span> --}}
@@ -90,7 +89,7 @@
             </li>
             <li class="nav-item">
               <a href="/akun/daftar-akun" class="nav-link {{ Request::is('akun/daftar-akun') || Request::is('akun/daftar-penjual') || Request::is('akun/daftar-pembeli') ? 'active' : ''}}">
-                <i class="nav-icon fas fa-th"></i>
+                <i class="nav-icon fas fa-users"></i>
                 <p>
                  Daftar Akun
                   {{-- <span class="right badge badge-danger">New</span> --}}
@@ -99,7 +98,7 @@
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-tree"></i>
+                <i class="nav-icon fas fa-user"></i>
                 <p>
                   Profil
                   <i class="fas fa-angle-left right"></i>
@@ -107,22 +106,22 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="pages/UI/general.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="/akun/profil" class="nav-link">
+                    <i class="fa fa-address-card nav-icon"></i>
                     <p>Profil Detail</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="pages/UI/buttons.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                  <a href="/akun/ubah-password" class="nav-link">
+                    <i class="fa fa-key nav-icon"></i>
                     <p>Change Password</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="pages/UI/icons.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Logout</p>
-                  </a>
+                    <a href="/logout" class="nav-link">
+                        <i class="fa fa-window-close nav-icon"></i>
+                        <p>Logout</p>
+                    </a>
                 </li>
               </ul>
             </li>

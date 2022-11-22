@@ -6,6 +6,7 @@ use App\Models\Karya;
 use App\Models\FotoBarang;
 use Illuminate\Http\Request;
 use Image;
+use File;
 
 class karyaController extends Controller
 {
@@ -47,9 +48,10 @@ class karyaController extends Controller
             'nama_karya'    => 'required',
             'harga'         => 'required',
             'nama_foto'     => 'image|mimes:jpeg,png,jpg',
-            'deskripsi'     => 'required'
+            'deskripsi'     => 'required',
+            'demo'          => 'required|active_url'
         ]);
-        //Cari Cara Upload Foto
+        //Upload Foto
         $fotoMentah  = $request->file('nama_foto');
         $foto_size   = $request->file('nama_foto')->getSize();
         $namaFoto = 'lg'.time().'.'.$fotoMentah->extension();
@@ -95,9 +97,10 @@ class karyaController extends Controller
      */
 
      //Function untuk mengirim data ke halaman edit karya dan menampilkan halaman
-    public function edit(Karya $karya)
+    public function edit($id)
     {
-        return view('admin.karya.edit');
+        $karya_terpilih = Karya::where(['id' => $id])->first();
+        return view('admin.karya.edit', compact('karya_terpilih'));
     }
 
     /**
@@ -107,9 +110,50 @@ class karyaController extends Controller
      * @param  \App\Models\Karya  $karya
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Karya $karya)
+    public function update(Request $request, $id)
     {
-        //
+        //Memvalidasi Data yang mau di ubah dari form
+        $data = $request->validate([
+            'nama_karya'    => 'required',
+            'harga'         => 'required',
+            'deskripsi'     => 'required',
+            'demo'          => 'required|active_url'
+        ]);
+        if($request->nama_foto){
+            $data = $request->validate([
+                'nama_foto' => 'required|image|mimes:png,jpg,jpeg'
+            ]);
+            $ambil_foto = FotoBarang::where(['karya_id' => $request->id])->first();
+
+            //Menghapus Foto Lama yang mau diganti
+            $url = public_path('admin/image/foto/'.$ambil_foto['nama_foto']);
+            if (file_exists($url)) {
+                File::delete($url);
+            }
+            //Upload Foto
+            $fotoMentah  = $request->file('nama_foto');
+            $foto_size   = $request->file('nama_foto')->getSize();
+            $namaFoto = 'lg'.time().'.'.$fotoMentah->extension();
+            $lokasiFoto = public_path('admin\image\foto');
+            $foto = Image::make($fotoMentah->path());
+            $save = $foto->save($lokasiFoto."\\".$namaFoto);
+
+            FotoBarang::where(['karya_id' => $request->id])->update([
+                'nama_foto' => $namaFoto
+            ]);
+        }
+        //Jika Validasi Berhasil akan mengupdate table dan meredirect ke halaman index karya
+        if ($data) {
+            Karya::where(['id' => $request->id])->update([
+                'nama_karya'=> $request->nama_karya,
+                'status'    => 2,
+                'deskripsi' => $request->deskripsi,
+                'demo'      => $request->demo,
+                'harga'     => $request->harga
+            ]);
+        }
+
+        return redirect('karya-list');
     }
 
     /**

@@ -149,4 +149,19 @@ class penjualController extends Controller
         User::where(['id' => $id])->delete();
         return redirect('/akun/daftar-akun');
     }
+
+    public function changePassword()
+    {
+        return view('admin.akun.password');
+    }
+
+    public function saveChangePassword(Request $request)
+    {
+        //Validasi Password Inputan User
+        $data = $request->validate([
+            'password_lama' => 'required',
+            'password_baru' => 'required'
+        ]);
+        return redirect('/akun/profil');
+    }
 }

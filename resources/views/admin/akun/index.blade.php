@@ -92,7 +92,7 @@
                     <h3 class="card-title">Akun Pembeli</h3>
                     <div class="card-tools">
                         <a href="/akun/daftar-pembeli">
-                            <button type="button" class="ml-1 btn btn-sm btn-primary">Lihat Semua Pembeli</button>
+                            <button type="button" class="ml-1 btn btn-sm btn-primary"><i class="fa fa-eye"></i> Lihat Semua Pembeli</button>
                         </a>
                     </div>
                 </div>
@@ -130,16 +130,16 @@
 
                         <td style="max-width:50vh">
                             @if ($beli->status == 1)
-                                <a href="/akun/shutdown/{{$beli->id}}"><button style="width: 100%; margin-top:8px" class="btn btn-md btn-warning">Non-Aktifkan</button></a><br>
+                                <a href="/akun/shutdown/{{$beli->id}}"><button style="width: 100%; margin-top:8px" class="btn btn-md btn-warning"><i class="fa fa-power-off"></i> Non-Aktifkan</button></a><br>
                             @endif
                             @if ($beli->status == 2)
-                                <a href="/akun/verify/{{$beli->id}}"><button style="width: 100%; margin-top:8px" class="btn btn-md btn-primary">Verifikasi</button></a><br>
+                                <a href="/akun/verify/{{$beli->id}}"><button style="width: 100%; margin-top:8px" class="btn btn-md btn-primary"><i class="fa fa-check-square"></i> Verifikasi</button></a><br>
                             @endif
                             @if ($beli->status == 3)
-                                <a href="/akun/activate/{{$beli->id}}"><button style="width: 100%; margin-top:8px" class="btn btn-md btn-success">Aktifkan</button></a><br>
+                                <a href="/akun/activate/{{$beli->id}}"><button style="width: 100%; margin-top:8px" class="btn btn-md btn-success"><i class="fa fa-bolt"></i> Aktifkan</button></a><br>
                             @endif
                           <br>
-                         <a href="/akun/hapus/{{$beli->id}}"><button style="width: 100%; margin-top:8px" class="btn btn-md btn-danger">Hapus</button></a><br>
+                         <a href="/akun/hapus/{{$beli->id}}"><button style="width: 100%; margin-top:8px" class="btn btn-md btn-danger"><i class="fa fa-trash"></i> Hapus</button></a><br>
                       </td>
                      </tr>
                    @endforeach
@@ -158,7 +158,7 @@
                 <h3 class="card-title">Akun Penjual</h3>
                 <div class="card-tools">
                   <a href="/akun/daftar-penjual">
-                    <button type="button" class="ml-1 btn btn-sm btn-primary">Lihat Semua Penjual</button>
+                    <button type="button" class="ml-1 btn btn-sm btn-primary"><i class="fa fa-eye"></i> Lihat Semua Penjual</button>
                   </a>
                 </div>
                 </div>
@@ -194,16 +194,16 @@
                         </td>
                        <td style="max-width:50vh">
                         @if ($jual->status == 1)
-                            <a href="/akun/shutdown/{{$jual->id}}"><button style="width: 100%; margin-top:8px" class="btn btn-md btn-warning">Non-Aktifkan</button></a><br>
+                            <a href="/akun/shutdown/{{$jual->id}}"><button style="width: 100%; margin-top:8px" class="btn btn-md btn-warning"><i class="fa fa-power-off"></i> Non-Aktifkan</button></a><br>
                         @endif
                         @if ($jual->status == 2)
-                            <a href="/akun/verify/{{$jual->id}}"><button style="width: 100%; margin-top:8px" class="btn btn-md btn-primary">Verifikasi</button></a><br>
+                            <a href="/akun/verify/{{$jual->id}}"><button style="width: 100%; margin-top:8px" class="btn btn-md btn-primary"><i class="fa fa-check-square"></i> Verifikasi</button></a><br>
                         @endif
                         @if ($jual->status == 3)
-                            <a href="/akun/activate/{{$jual->id}}"><button style="width: 100%; margin-top:8px" class="btn btn-md btn-success">Aktifkan</button></a><br>
+                            <a href="/akun/activate/{{$jual->id}}"><button style="width: 100%; margin-top:8px" class="btn btn-md btn-success"><i class="fa fa-bolt"></i> Aktifkan</button></a><br>
                         @endif
                         <br>
-                          <a href="/akun/hapus/{{$jual->id}}"><button style="width: 100%; margin-top:8px" class="btn btn-md btn-danger">Hapus</button></a><br>
+                          <a href="/akun/hapus/{{$jual->id}}"><button style="width: 100%; margin-top:8px" class="btn btn-md btn-danger"><i class="fa fa-trash"></i> Hapus</button></a><br>
                       </td>
                      </tr>
                    @endforeach
