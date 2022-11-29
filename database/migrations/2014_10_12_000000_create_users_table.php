@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             //Status dari akun, apakah status nya hidup(1), atau belum diverivikasi(2), mati(3)
             $table->string('status')->default('1');
             //Nomor WA aktif dari User
-            $table->integer('wa');
+            $table->string('wa',50);
             //Alamat Tinggal User
             $table->text('alamat')->nullable();
             //Foto Profil dari user

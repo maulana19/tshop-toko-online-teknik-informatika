@@ -18,7 +18,7 @@ class CreatePenjualTable extends Migration
             //Field user id untuk menghubungkan tabel penjual dengan tabel user
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             //Field NIM untuk membuktikan bahwa penjual merupakan user dengan predikat mahasiswa TIF aktif
-            $table->integer('nim');
+            $table->string('nim', 50);
             //Feild Berisi Portofolio dari pennjual
             $table->text('portofolio')->nullable;
             //Field Berisi repository github dari penjual

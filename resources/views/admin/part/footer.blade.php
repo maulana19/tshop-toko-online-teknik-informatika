@@ -20,3 +20,16 @@
 <script src="{{ asset('admin/plugins/ekko-lightbox/ekko-lightbox.min.js') }}"></script>
 <script src="{{ asset('admin/dist/js/adminlte.min.js') }}"></script>
 <script src="{{ asset('admin/plugins/filterizr/jquery.filterizr.min.js') }}"></script>
+
+<script>
+    Dropzone.options.myGreatDropzone = { // camelized version of the `id`
+      paramName: "file", // The name that will be used to transfer the file
+      maxFilesize: 2, // MB
+      accept: function(file, done) {
+        if (file.name == "justinbieber.jpg") {
+          done("Naha, you don't.");
+        }
+        else { done(); }
+      }
+    };
+</script>

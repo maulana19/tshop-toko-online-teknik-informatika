@@ -53,6 +53,15 @@ Route::get('akun/activate/{id}', [penjualController::class, 'aktifkanAkun']);
 //Route untuk menghapus akun yang dipilih
 Route::get('akun/hapus/{id}', [penjualController::class, 'hapusAkun']);
 
+//Route untuk Mengubah Data Profil
+Route::post('akun/profil/ubahProfil', [penjualController::Class, 'editAkun']);
+
+//Route untuk Mengubah Foto Profil
+Route::post('akun/upload/foto', [penjualController::Class, 'editFotoAkun']);
+
+//Route untuk Mengubah Logo
+Route::post('akun/upload/logo', [penjualController::Class, 'editLogoAkun']);
+
 
 //Route untuk menampilkan data transaksi
 Route::get('transaksi', [transaksiController::class, 'index']);

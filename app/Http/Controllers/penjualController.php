@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Penjual;
+use App\Models\Karya;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class penjualController extends Controller
 {
@@ -15,7 +17,38 @@ class penjualController extends Controller
      */
     public function index()
     {
-        return view('admin.akun.profil');
+        $id = auth()->user()->id;
+        $data = User::where(['id' => $id])->first();
+        $totalKarya = Karya::where(['id' => $id])->get();
+        $totalKaryaValid = Karya::where(['id' => $id])->where(['status' => 3])->get();
+
+        if ($data->foto != null) {
+            if (File::exists(public_path('admin/image/foto/profil/'.$data->foto))) {
+                $data->foto = 'admin/image/foto/profil/'.$data->foto;
+                $data->cekFoto = 1;
+            }else{
+                $data->foto = 'admin/dist/img/default_profil.png';
+                $data->cekFoto = 2;
+            }
+        }else{
+            $data->foto = 'admin/dist/img/default_profil.png';
+            $data->cekFoto = 0;
+        }
+
+        if ($data->penjual->logo != null) {
+            if (File::exists(public_path('admin/image/logo/toko/'. $data->penjual->logo ))) {
+                $data->logo = 'admin/image/foto/profil/'. $data->penjual->logo;
+                $data->cekLogo = 1;
+            }else{
+                $data->logo = 'admin/dist/img/default_logo.png';
+                $data->cekLogo = 2;
+            }
+        }else{
+            $data->logo = 'admin/dist/img/default_logo.png';
+            $data->cekLogo = 0;
+        }
+
+        return view('admin.akun.profil', compact('data', 'totalKarya', 'totalKaryaValid'));
     }
 
     /**
@@ -163,5 +196,58 @@ class penjualController extends Controller
             'password_baru' => 'required'
         ]);
         return redirect('/akun/profil');
+    }
+    public function editAkun(Request $request)
+    {
+        if ($request->email != null) {
+            $validasi = $request->validate([
+                'email'     => 'email',
+            ],
+            [
+                'email.email'       => 'Email Tidak Valid',
+            ]);
+        }
+        if ($request->wa != null) {
+            $validasi = $request->validate([
+                'wa'     => 'regex:/^(08)/|min:12',
+            ],
+            [
+                'wa.regex'       => 'Periksa Nomor Whatsapp Anda, Nomor yang Dimasukkan Harus Diawali angka 08 ',
+                'wa.min'         => 'Periksa Nomor Whatsapp Anda, Nomor yang Dimasukkan memiliki jumlah angka yang tidak wajar ',
+            ]);
+        }
+        $data = [];
+        if($request->name != null){
+            $data += ['name' => $request->name];
+        }
+        if($request->email != null){
+            $data += ['email' => $request->email];
+        }
+        if($request->wa != null){
+            $data += ['wa' => $request->wa];
+        }
+        if($request->alamat != null){
+            $data += ['alamat' => $request->alamat];
+        }
+        $editData = User::where(['id' => auth()->user()->id])->update($data);
+        if($request->nim != null){
+            $validasi = $request->validate([
+                'nim'  => 'numeric'
+            ],[
+                'nim.numeric' => 'NIM Hanya Boleh Berisi Angka'
+            ]);
+            $editData = Penjual::where(['user_id' => auth()->user()->id])->update(['nim' => $request->nim]);
+        }
+        return redirect('/akun/profil');
+    }
+
+    public function editFotoAkun(Request $request)
+    {
+        return 'ok Edit Foto';
+    }
+
+    public function editLogoAkun(Request $request)
+    {
+        return 'ok Edit Logo';
     }
 }
